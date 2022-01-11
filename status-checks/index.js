@@ -49,7 +49,9 @@ async function setStatus(context, state, description) {
         await setStatus(name, 'failure', message);
       }
     }),
-  );
+  ).catch(error => {
+    console.error(error.message)
+  });
 
   console.log('Finished status checks');
 })();
