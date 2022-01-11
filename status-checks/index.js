@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const checks = require('./checks');
 
-const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+const [owner, repo] = process.env.GH_REPO.split('/');
 
 function getCurrentCommitSha() {
   return cp
@@ -25,7 +25,7 @@ async function setStatus(context, state, description) {
       context,
     }),
     headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      Authorization: `Bearer ${process.env.GH_TOKEN}`,
       'Content-Type': 'application/json',
     },
   });
