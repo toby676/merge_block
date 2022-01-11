@@ -28,6 +28,8 @@ async function setStatus(context, state, description) {
       Authorization: `Bearer ${process.env.GH_TOKEN}`,
       'Content-Type': 'application/json',
     },
+  }).catch((error) => {
+    console.error(error);
   });
 }
 
@@ -49,9 +51,7 @@ async function setStatus(context, state, description) {
         await setStatus(name, 'failure', message);
       }
     }),
-  ).catch(error => {
-    console.error(error.message)
-  });
+  )
 
   console.log('Finished status checks');
 })();
