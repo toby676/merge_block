@@ -1,9 +1,10 @@
-name: PR status checks
+name: Block Merges
 on:
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
+  label:
+    types: [created]
 jobs:
   build:
+    if: github.event.label.name == 'block-merges'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,11 +18,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install and build
+    - name: Install
       run: |
         npm install
-    - name: Run status checks
-      run: node status-checks
+    - name: Block Merges
+      run: node block-merges
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         GH_REPO: ${{ secrets.GH_REPO }}
