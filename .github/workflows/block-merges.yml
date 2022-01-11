@@ -4,7 +4,7 @@ on:
     types: [opened]
 jobs:
   build:
-    if: github.event.label.name == 'block-merges'
+    if: contains( toJson(github), 'block-merges' )
     runs-on: ubuntu-latest
     strategy:
       matrix:
