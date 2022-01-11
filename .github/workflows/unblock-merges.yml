@@ -1,0 +1,27 @@
+name: Unblock Merges
+  label:
+    types: [closed]
+jobs:
+  build:
+    if: github.event.label.name == 'block-merges'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        # Checkout the head ref instead of the PR branch that github creates.
+        ref: ${{ github.head_ref }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install
+      run: |
+        npm install
+    - name: Unblock Merges
+      run: node unblock-merges
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_REPO: ${{ secrets.GH_REPO }}
