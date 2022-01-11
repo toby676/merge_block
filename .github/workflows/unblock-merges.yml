@@ -1,4 +1,5 @@
 name: Unblock Merges
+on:
   label:
     types: [closed]
 jobs:
