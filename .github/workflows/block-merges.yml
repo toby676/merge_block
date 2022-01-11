@@ -1,7 +1,7 @@
 name: Block Merges
 on:
-  label:
-    types: [created]
+  issues:
+    types: [opened]
 jobs:
   build:
     if: github.event.label.name == 'block-merges'
