@@ -29,4 +29,3 @@ jobs:
        uses: simplybusiness/deploy-status-action@v0.4.1
        env:
          ISSUE_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-         AIRBRAKE_KEY: ${{secrets.GH_AIRBRAKE_KEY}}
